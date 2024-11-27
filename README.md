@@ -1,4 +1,4 @@
-# Nombre del Proyecto
+# Sistema de gestion de Videojuegos
 
 Este proyecto es un sistema de gestión de videojuegos desarrollado para permitir a los usuarios gestionar su biblioteca de juegos, 
 realizar registros, actualizar información y eliminar videojuegos de su inventario. La plataforma incluye un sistema de autenticación para que los usuarios puedan crear cuentas,

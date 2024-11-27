@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Juegos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+
+<body>
+<div th:replace="comun/menu.html"></div>
+<div class="container">
+    <h1 class="mt-5">Lista de VideoJuegos</h1>
+
+    <a th:href="@{/juegos/nuevoJuego}" class="btn btn-primary mb-3">Nuevo VideoJuego</a>
+
+    <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Nombre del Juego</th>
+            <th>Descripción</th>
+            <th>Disponibilidad</th>
+            <th>Precio</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="juego : ${juegos}">
+            <td th:text="${juego.idJuego}"></td>
+            <td th:text="${juego.nomJuego}"></td>
+            <td th:text="${juego.desJuego}"></td>
+            <td th:text="${juego.dispoJueg}"></td>
+            <td th:text="${juego.precio}"></td>
+            <td>
+                <div class="d-flex align-items-center">
+                    <a th:href="@{/juegos/actualizarJuego/{id}(id=${juego.idJuego})}" class="btn btn-warning me-2">Editar</a>
+                    <a th:href="@{/juegos/eliminarJuego/{id}(id=${juego.idJuego})}" class="btn btn-danger">Eliminar</a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Listar Reservas</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+<div th:replace="comun/menu.html"></div>
+<div class="container">
+	<h1 class="mt-5">Lista de Reservas</h1>
+	<a th:href="@{/reservas/nuevaReserva}" class="btn btn-primary mb-3">Registrar nueva Reserva</a>
+	<a th:href="@{/reservas/busquedaReserva}" class="btn btn-primary mb-3">Buscar Reserva</a>
+
+	<table class="table table-striped">
+		<thead class="thead-dark">
+		<tr>
+			<th>Codigo</th>
+			<th>Fecha</th>
+			<th>Hora</th>
+			<th>Cantidad</th>
+			<th>Estado</th>
+			<th>Cliente</th>
+			<th>Juegos</th>
+			<th>Accion</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr th:each="reserva : ${listarReservas}">
+			<td th:text="${reserva.idReserva}"></td>
+			<td th:text="${#dates.format(reserva.fechReserva, 'dd/MM/yyyy')}"></td>
+			<td th:text="${reserva.horaReserva}"></td>
+			<td th:text="${reserva.cantidad}"></td>
+			<td th:switch="${reserva.estadoReserva}">
+				<span th:case="'0'">Pagado</span>
+				<span th:case="'1'">Por Pagar</span>
+			</td>
+			<td th:text="${reserva.cliente?.nomCliente?:'no registrado'}+' '+
+				${reserva.cliente?.apPat?:''}"></td>
+			<td>
+					<div th:each="juegos:${reserva.juegos}" th:text="${juegos.nomJuego}"style="display: block" ></div>
+			</td>
+
+			<td>
+				<a th:href="@{/reservas/actualizarReserva/{id}(id=${reserva.idReserva})}" class="btn btn-warning">Editar</a>
+				<a th:href="@{/reservas/eliminarReserva/{id}(id=${reserva.idReserva})}" class="btn btn-danger">Eliminar</a>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+
+</div>
+</body>
+</html>

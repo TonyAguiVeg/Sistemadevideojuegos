@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Actualizar Entrega</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+<div th:replace="comun/menu.html"></div>
+<div class="container">
+    <h1 class="mt-5">Administración de Entregas</h1>
+    <hr>
+    <h2>Actualizar Entrega</h2>
+
+    <div class="row justify-content-left">
+        <div class="col-md-6">
+            <form th:action="@{/entregas/guardarEntrega}" th:object="${entrega}" method="post">
+
+                <label>Id de Entrega</label>
+                <input type="text" th:field="*{idEntrega}" class="form-control mb-4 col-4" readonly>
+
+                <label>Fecha de Entrega:</label>
+                <input type="date" th:field="*{fechEntrega}" placeholder="Fecha de entrega" class="form-control mb-4 col-4">
+
+                <label>Hora de Entrega:</label>
+                <input type="text" th:field="*{horaEntrega}" placeholder="Hora de entrega" class="form-control mb-4 col-4">
+
+                <label>Estado de Entrega:</label>
+                <select th:field="*{estadoEntrega}" class="form-control mb-4 col-4">
+                    <option th:value="'0'" th:text="'Devuelto'"></option>
+                    <option th:value="'1'" th:text="'No Devuelto'"></option>
+                </select>
+
+                <label>Id de Reserva</label>
+                <input type="number" th:field="*{reserva.idReserva}" placeholder="id de reserva" class="form-control mb-4 col-4">
+
+                <button type="submit" class="btn btn-info col-2">Guardar</button>
+                <button type="button" class="btn btn-secondary col-2" onclick="window.location.href='/entregas/listarEntregas'">Cancelar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
